@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API fUN</title>
+</head>
+
+<body>
+    <h1> hello API</h1>
+    <h2 id="dome"></h2>
+
+
+    <script>
+
+        async function dis() {
+            const hello = await fetch('http://www.boredapi.com/api/activity/')
+            const data = await hello.json();
+            //console.log(data);
+            document.getElementById("dome").innerText = data.activity;
+        }
+        dis();
+
+        setTimeout(() => {
+            dis();
+        }, 100)
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHO AM I</title>
+</head>
+<style>
+    img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        margin: 20px;
+    }
+
+    body {
+        /* margin-left: 40%;
+        margin-top: 10%; */
+        align-items: center;
+    }
+
+    h2 {
+        margin-left: 30px;
+    }
+
+    h1 {
+        margin-left: 5px;
+    }
+</style>
+
+<body>
+    <div id="images">
+
+    </div>
+    <h2>hi my name is</h2>
+    
+    <h1 id="name"></h1>
+
+
+    <script>
+
+        function display() {
+            fetch('https://randomuser.me/api/')
+                .then(res => res.json())
+                .then(data => {
+                    const user = data.results[0];
+                    console.log(user.picture);
+                    const fullName = `${user.name.title} ${user.name.first} ${user.name.last}`//user.name.first + " " + user.name.last 
+                    document.getElementById('name').innerText = fullName;
+                    const photo = user.picture.large;
+
+                    let images = document.createElement('img');
+                    images.src = photo;
+                    document.getElementById('images').appendChild(images);
+
+                    //const userNm = ;
+                    let element = document.createElement('p');
+                    element.innerHTML = fullName;
+                    document.getElementById('name').appendChild(element)
+                    //displayPic(fullName); 
+                })
+        }
+        display()
+        setInterval(() => {
+            display()
+        }, 1);
+
+
+        // function displayPic(name) {
+
+
+
+        // }
+
+    </script>
+</body>
+
+</html>

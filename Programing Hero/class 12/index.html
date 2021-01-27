@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input id="displayPin" class="form-control" type="text">
+                    <button id="pinBtn" onclick="generatePin()" class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <form name="form">
+                    <div class="input-section half-width">
+                        <input class="form-control" name="displayResult" id="displayResult" type="text">
+                        <div class="numbers">
+                            <div class="calc-body">
+                                <div class="calc-button-row">
+                                    <!-- <input class="button" type="button" name="b7" value="7" onClick="calcNumbers(b7.value)"> -->
+                                    <div class="button" id="b7" onClick="calcNumbers(b7.innerHTML)">7</div>
+                                    <div class="button" id="b8" onClick="calcNumbers(b8.innerHTML)">8</div>
+                                    <div class="button" id="b9" onClick="calcNumbers(b9.innerHTML)">9</div>
+                                </div>
+                                <div class="calc-button-row">
+                                    <div class="button" id="b4" onClick="calcNumbers(b4.innerHTML)">4</div>
+                                    <div class="button" id="b5" onClick="calcNumbers(b5.innerHTML)">5</div>
+                                    <div class="button" id="b6" onClick="calcNumbers(b6.innerHTML)">6</div>
+                                </div>
+                                <div class="calc-button-row">
+                                    <div class="button" id="b1" onClick="calcNumbers(b1.innerHTML)">1</div>
+                                    <div class="button" id="b2" onClick="calcNumbers(b2.innerHTML)">2</div>
+                                    <div class="button" id="b3" onClick="calcNumbers(b3.innerHTML)">3</div>
+                                </div>
+                                <div class="calc-button-row">
+                                    <div class="button" id="b>" onClick="calcNumbers(b>.innerHTML)"> > </div>
+                                    <div class="button" id="b0" onClick="calcNumbers(b0.innerHTML)">0</div>
+                                    <div class="button" id="bC" onClick="document.getElementById('displayResult').value='' ">C</div>
+                                </div>
+                                <div>
+                                    <div id="submitBtn" class="submit-btn">Submit</div>
+                                    <p class="action-left"><span id="action">3</span> try left</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="notify-section">
+                <p class="notify" id="notify1">❌ Pin Didn't Match, Please try again</p>
+                <p class="notify" id="notify2">✅ Pin Matched... Secret door is opening for you</p>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById('submitBtn').addEventListener('click', function () {
+                const displayPin = document.getElementById('displayPin');
+                const par = parseInt(displayPin.value);
+                const displayResult = document.getElementById('displayResult');
+                const par2 = parseInt(displayResult.value);
+
+                if (par2 === par) {
+                    displayNone('notify1')
+                    displayBlock('notify2')
+                }else if(par !== par2){
+                    displayBlock('notify1')
+                    displayNone('notify2')
+                     
+                }
+                document.getElementById('displayPin').value = '';
+                document.getElementById('displayResult').value = '';
+                actionArea(false)
+            })
+
+            function actionArea(isAction) {
+                const action = document.getElementById('action');
+                const setValue = parseInt(action.innerText);
+                if (isAction == false && setValue > 0) {
+                    action.innerText= setValue - 1;
+                }
+                
+                if (setValue == 0  ) {
+                    displayNone('pinBtn')
+                    document.getElementById('displayPin').value="Oops.........";
+                    document.getElementById('displayResult').value="Oops.........";
+                   
+                }
+            }
+
+            function calcNumbers(result) {
+                form.displayResult.value = form.displayResult.value + result;
+
+            }
+            function generatePin() {
+                var arc = Math.random() * 9999;
+                var result = Math.round(arc);
+                //console.log(result);
+                document.getElementById('displayPin').value = result;
+                displayNone('notify2')
+                displayNone('notify1')
+                actionArea(false)
+            }
+            function displayNone(noneItem) {
+                document.getElementById(noneItem).style.display= 'none';
+            }
+            function displayBlock(blockItem) {
+                document.getElementById(blockItem).style.display= 'block';
+            }
+
+
+        </script>
+</body>
+
+</html>
+
+
+<!-- <script>
+    function calcNumbers(result) {
+        form.displayResult.value = form.displayResult.value + result;
+
+    }
+</script> -->
+<!-- <div class="container">
+    <form name="form">
+        <div class="display">
+            <input type="text" placeholder="0" name="displayResult" />
+        </div>
+        <div class="buttons">
+            <div class="row">
+                <input type="button" name="b7" value="7" onClick="calcNumbers(b7.value)">
+                <input type="button" name="b8" value="8" onClick="calcNumbers(b8.value)">
+                <input type="button" name="b9" value="9" onClick="calcNumbers(b9.value)">
+                <input type="button" name="addb" value="+" onClick="calcNumbers(addb.value)">
+            </div>
+
+            <div class="row">
+                <input type="button" name="b4" value="4" onClick="calcNumbers(b4.value)">
+                <input type="button" name="b5" value="5" onClick="calcNumbers(b5.value)">
+                <input type="button" name="b6" value="6" onClick="calcNumbers(b6.value)">
+                <input type="button" name="subb" value="-" onClick="calcNumbers(subb.value)">
+            </div>
+
+            <div class="row">
+                <input type="button" name="b1" value="1" onClick="calcNumbers(b1.value)">
+                <input type="button" name="b2" value="2" onClick="calcNumbers(b2.value)">
+                <input type="button" name="b3" value="3" onClick="calcNumbers(b3.value)">
+                <input type="button" name="mulb" value="*" onClick="calcNumbers(mulb.value)">
+            </div>
+
+            <div class="row">
+                <input type="button" name="b0" value="0" onClick="calcNumbers(b0.value)">
+                <input type="button" name="potb" value="." onClick="calcNumbers(potb.value)">
+                <input type="button" name="divb" value="/" onClick="calcNumbers(divb.value)">
+                <input type="button" class="red" value="=" onClick="displayResult.value=eval(displayResult.value)">
+            </div>
+        </div>
+
+    </form> -->

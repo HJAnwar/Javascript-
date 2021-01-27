@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<style>
+    .items{
+        background-color: beige;
+        margin: 20px;
+        padding: 10px;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div id="userName"></div>
+    <script>
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(res => res.json())
+            .then(data => {display (data)
+                //console.log(data);
+            })
+           function display(user){
+               let users = '';
+           user.map(userIn => {
+
+           users = users + `
+           <div class='items'>
+            <li>${userIn.name}</li>
+            <p>${userIn.phone}</>
+
+            </div>
+           `;
+           console.log(users);
+           document.getElementById('userName').innerHTML =users;
+
+           })
+           }
+    </script>
+</body>
+
+</html>

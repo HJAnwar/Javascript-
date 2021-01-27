@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<div id="userName"></div>
+
+<body>
+
+    <script>
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(res => res.json())
+            .then(data => {display (data)
+                //console.log(data);
+            })
+            function display (user) {
+                let name = '';
+                user.forEach(element => {
+                    
+                    name = name + `
+                    <h2>${element.name}</h2>
+                    <p>${element.phone}</p>
+                    `
+                    //console.log(name);
+                    
+                });
+
+                const userName = document.getElementById('userName');
+                    userName.innerHTML = name;
+            }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>first javascript</title>
+</head>
+<body>
+    <ul id="add">
+        <li>gift=1</li>
+        <li>gift=2</li>
+        <li>gift=3</li>
+        <li>gift=4</li>
+        <li>gift=5</li>
+    </ul>
+</body>
+<script>
+   const add = document.getElementById("add");
+   const newli = document.createElement("li");
+   newli.innerHTML = 'gift=6';
+   add.appendChild(newli);
+
+   var x = 10;
+   x -= 4;
+   console.log(x);
+
+</script>
+</html>

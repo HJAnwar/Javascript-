@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Young Star Fundation </title>
+
+    <!-- bootstrap style link -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- css style  link  -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="login-area">
+        <h1 class="text-center ">Welcome to young star Fundation</h1>
+        <div class="submit-area">
+            <h3 class="font-weight:bolder">login</h3>
+            <input type="email" class="form-control" placeholder="Enter email" id="email" aria-required="true">
+            <br>
+            <input type="password" class="form-control" placeholder="Enter password" id="pwd">
+            <br>
+            <button id="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+    <div id="bank-area">
+        <div class="row">
+            <div class="col-md-4 ">
+                <div class="deposit">
+                    <h4>Deposit</h4>
+                    <h2>$ <samp id="currentDepositAmount">00</samp></h2>
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="withdraw">
+                    <h4>Withdraw</h4>
+                    <h2>$ <samp id="currentWithdrawAmount">00</samp></h2>
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="balance">
+                    <h4>Balance</h4>
+                    <h2>$ <samp id="currentBalance">1200</samp></h2>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-6 ">
+                <div class="input-deposit submit-area">
+                    <h4>Dep
+                        osit</h4>
+                    <input type="text" id="addDeposit" class="form-control" placeholder="Enter Deposit" required>
+                    <br>
+                    <button id="depositBTN"  class="btn btn-primary depositBTN">Deposit</button>
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                <div class="input-withdraw submit-area">
+                    <h4>Withdraw</h4>
+                    <input type="text" id="addWithdraw" class="form-control" placeholder="Enter Withdraw" required>
+                    <br>
+                    <button id="withdrawBTN"  class="btn btn-primary">Withdraw</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        var display = document.getElementById('submit');
+        display.addEventListener('click',  function displayNone() {
+            var none = document.getElementById("login-area");
+            none.style.display = 'none'
+            if (none.style.display === 'none') {
+                var displayBlock = document.getElementById('bank-area');
+                displayBlock.style.display = "block";
+            }
+        });
+
+        //deposit area here
+
+        const deposit =document.getElementById('depositBTN');
+        deposit.addEventListener('click', function () {
+            const AddDeposits = document.getElementById('addDeposit').value;
+            const depositNumber = parseFloat(AddDeposits);
+            document.getElementById('addDeposit').value ='';
+
+            const currentDeposit= document.getElementById("currentDepositAmount").innerText;
+            const addDepositAmount = parseFloat(currentDeposit);
+            const totalAmount =  depositNumber + addDepositAmount;
+            document.getElementById('currentDepositAmount').innerText = totalAmount;
+
+            const currentBalance = document.getElementById('currentBalance').innerText;
+            const currentBalanceAmount = parseFloat(currentBalance);
+            const totalBalance = depositNumber + currentBalanceAmount;
+            document.getElementById('currentBalance').innerText = totalBalance;
+
+        });
+
+        //withdraw area here
+
+        const withdraw = document.getElementById('withdrawBTN');
+        withdraw.addEventListener('click', function () {
+            const addWithdraw = document.getElementById('addWithdraw').value;
+            const withdrawNumber =  parseFloat(addWithdraw);
+            document.getElementById('addWithdraw').value ='';
+
+            const currentWithdraw = document.getElementById('currentWithdrawAmount').innerText;
+            const currentWithdrawAmount = parseFloat(currentWithdraw);
+            const totalWithdraw = withdrawNumber + currentWithdrawAmount;
+            document.getElementById('currentWithdrawAmount').innerText = totalWithdraw;
+
+            const currentBalance = document.getElementById('currentBalance').innerText;
+            const currentBalanceAmount = parseFloat(currentBalance);
+            const totalAmount = currentBalanceAmount - withdrawNumber;
+            document.getElementById("currentBalance").innerText = totalAmount;
+
+        
+        })
+
+
+
+    </script>
+</body>
+
+</html>

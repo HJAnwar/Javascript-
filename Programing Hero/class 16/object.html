@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async data lond</title>
+</head>
+<body>
+    
+    <ul id=" listItem">
+
+    </ul>
+
+    <script>
+       async function dataLond() {
+            const dataLondHere = await fetch('https://jsonplaceholder.typicode.com/users');
+            const dataLond = await dataLondHere.json();
+            return dataLond;
+        }
+        const result =  dataLond();
+        result.then( res => {
+           for (let i = 0; i < res.length; i++) {
+               const element = res[i];
+                name = element.name;
+               
+           }
+           display(name)
+        })
+
+        function display(name) {
+            const hello = document.getElementById('listItem');
+               const lets = document.createElement('li');
+               lets.innerText = name;
+               hello.appendChild(lets);
+        }
+    </script>
+</body>
+</html>

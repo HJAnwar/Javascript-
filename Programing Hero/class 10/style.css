@@ -1,0 +1,40 @@
+body{
+    padding: 100px;
+    
+}
+h1, h4{
+    font-weight: bolder;
+}
+.submit-area{
+    margin-top: 20px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.596);
+}
+#bank-area{
+    display: none;
+    box-sizing: border-box;
+
+}
+.deposit{
+    padding:20px ;
+    margin: 10px;
+    color: white;
+    background-color: rgb(88, 114, 226);
+    border-radius: 10px;
+}
+.withdraw{
+    padding:20px ;
+    margin: 10px;
+    color: white;
+    background-color: yellowgreen;
+    border-radius: 10px;
+}
+.balance{
+    padding:20px ;
+    margin: 10px;
+    color: white;
+    background-color: teal;
+    border-radius: 10px;
+}
+
