@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new array method here</title>
+</head>
+
+<body>
+    <script>
+        add = function (arr) {
+            return arr.reduce((a, b) => a + b, 0);
+        };
+         var arr = []
+        for (let i = 0; i < 5; i++) {
+            
+            [i]= prompt('enter the number')
+            
+        }
+        var sum = add(arr);
+        document.write(sum)
+
+    </script>
+</body>
+
+</html>
